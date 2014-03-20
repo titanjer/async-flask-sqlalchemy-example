@@ -11,6 +11,7 @@ together in a completely non-blocking manner:
 * [Postgresql](http://www.postgresql.org/), for the database;
 * [Psycopg2](http://initd.org/psycopg/), for the SQLAlchemy-Postgresql adapter;
 * [Gunicorn](http://gunicorn.org/), for the WSGI server; and,
+* [uWSGI](http://projects.unbit.it/uwsgi/), for the alternative WSGI server;
 * [Gevent](http://www.gevent.org/), for the networking library.
 
 The file `server.py` defines a small Flask application that has
@@ -55,6 +56,10 @@ Run the server (which is the Flask application) like
 
 	gunicorn server:app
 
+or
+
+    uwsgi --http 0.0.0.0:8080 --home venv --wsgi-file server.py --callable app --master
+
 Then, in a separate shell, run the client like
 
 	python ./client.py
@@ -85,6 +90,10 @@ Run the server like
 
 	gunicorn server:app -k gevent
 
+or
+
+    uwsgi --http 0.0.0.0:8080 --home venv --wsgi-file server.py --callable app --master --gevent 100 --gevent-monkey-patch
+
 and run the client again.   You should see output like
 
 	Sending 5 requests for http://localhost:8000/sleep/python/...
@@ -110,6 +119,10 @@ and run the client again.   You should see output like
 Run the server like
 
 	PSYCOGREEN=true gunicorn server:app  -k gevent 
+
+or
+
+    PSYCOGREEN=true uwsgi --http 0.0.0.0:8080 --home venv --wsgi-file server.py --callable app --master --gevent 100 --gevent-monkey-patch
 
 and run the client again.   You should see output like
 
