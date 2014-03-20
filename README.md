@@ -58,7 +58,7 @@ Run the server (which is the Flask application) like
 
 or
 
-    uwsgi --http 0.0.0.0:8080 --home venv --wsgi-file server.py --callable app --master
+    uwsgi --http 0.0.0.0:8000 --home venv --wsgi-file server.py --callable app --master
 
 Then, in a separate shell, run the client like
 
@@ -92,7 +92,7 @@ Run the server like
 
 or
 
-    uwsgi --http 0.0.0.0:8080 --home venv --wsgi-file server.py --callable app --master --gevent 100 --gevent-monkey-patch
+    uwsgi --http 0.0.0.0:8000 --home venv --wsgi-file server.py --callable app --master --gevent 100 --gevent-monkey-patch
 
 and run the client again.   You should see output like
 
@@ -122,7 +122,7 @@ Run the server like
 
 or
 
-    PSYCOGREEN=true uwsgi --http 0.0.0.0:8080 --home venv --wsgi-file server.py --callable app --master --gevent 100 --gevent-monkey-patch
+    PSYCOGREEN=true uwsgi --http 0.0.0.0:8000 --home venv --wsgi-file server.py --callable app --master --gevent 100 --gevent-monkey-patch
 
 and run the client again.   You should see output like
 
